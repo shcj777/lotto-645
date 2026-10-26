@@ -14,6 +14,7 @@ import {
   Check,
   Sun,
   Moon,
+  Mail,
 } from 'lucide-react';
 import { LottoBall } from './components/LottoBall';
 import { LiveDrawMachine } from './components/LiveDrawMachine';
@@ -21,6 +22,7 @@ import { FiveGameTicket } from './components/FiveGameTicket';
 import { NumberCustomizer } from './components/NumberCustomizer';
 import { SimulationModal } from './components/SimulationModal';
 import { SavedNumbersModal } from './components/SavedNumbersModal';
+import { PartnershipModal } from './components/PartnershipModal';
 import {
   GenerationOptions,
   LottoGame,
@@ -38,6 +40,7 @@ export default function App() {
   const [activeTab, setActiveTab] = useState<ActiveViewTab>('machine');
   const [showSimulationModal, setShowSimulationModal] = useState(false);
   const [showSavedModal, setShowSavedModal] = useState(false);
+  const [showPartnershipModal, setShowPartnershipModal] = useState(false);
   const [shareToast, setShareToast] = useState(false);
 
   // Theme Mode (light / dark)
@@ -272,6 +275,13 @@ export default function App() {
             >
               <Trophy className="w-4 h-4" />
               <span>당첨 모의 시뮬레이션</span>
+            </button>
+            <button
+              onClick={() => setShowPartnershipModal(true)}
+              className="hover:text-slate-900 dark:hover:text-slate-100 transition-colors whitespace-nowrap shrink-0 flex items-center gap-1.5 cursor-pointer text-slate-600 dark:text-slate-400 font-semibold"
+            >
+              <Mail className="w-4 h-4 text-indigo-500" />
+              <span>제휴문의</span>
             </button>
           </nav>
 
@@ -565,15 +575,30 @@ export default function App() {
         />
       )}
 
+      {/* Partnership Form Modal */}
+      {showPartnershipModal && (
+        <PartnershipModal onClose={() => setShowPartnershipModal(false)} />
+      )}
+
       {/* Footer */}
       <footer className="border-t border-slate-200 dark:border-slate-800 py-6 bg-white dark:bg-slate-900 text-xs text-slate-400 dark:text-slate-500 mt-auto transition-colors">
-        <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
+        <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
           <div>
             <span className="font-bold text-slate-600 dark:text-slate-300">로또 6/45 추첨소</span>
             <span className="mx-2">·</span>
             <span>본 사이트는 오락 및 참고용 번호 추천기이며 실제 복권 구매와는 무관합니다.</span>
           </div>
-          <span className="font-mono">건전한 복권 문화를 응원합니다</span>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => setShowPartnershipModal(true)}
+              className="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 font-semibold transition-colors flex items-center gap-1 cursor-pointer"
+            >
+              <Mail className="w-3.5 h-3.5" />
+              <span>제휴 및 광고 문의</span>
+            </button>
+            <span>·</span>
+            <span className="font-mono">건전한 복권 문화를 응원합니다</span>
+          </div>
         </div>
       </footer>
     </div>
