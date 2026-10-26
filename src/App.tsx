@@ -15,6 +15,7 @@ import {
   Sun,
   Moon,
   Mail,
+  MessageSquare,
 } from 'lucide-react';
 import { LottoBall } from './components/LottoBall';
 import { LiveDrawMachine } from './components/LiveDrawMachine';
@@ -23,6 +24,7 @@ import { NumberCustomizer } from './components/NumberCustomizer';
 import { SimulationModal } from './components/SimulationModal';
 import { SavedNumbersModal } from './components/SavedNumbersModal';
 import { PartnershipModal } from './components/PartnershipModal';
+import { DisqusComments } from './components/DisqusComments';
 import {
   GenerationOptions,
   LottoGame,
@@ -282,6 +284,15 @@ export default function App() {
             >
               <Mail className="w-4 h-4 text-indigo-500" />
               <span>제휴문의</span>
+            </button>
+            <button
+              onClick={() => {
+                document.getElementById('disqus_thread')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="hover:text-slate-900 dark:hover:text-slate-100 transition-colors whitespace-nowrap shrink-0 flex items-center gap-1.5 cursor-pointer text-slate-600 dark:text-slate-400 font-semibold"
+            >
+              <MessageSquare className="w-3.5 h-3.5 text-amber-500" />
+              <span>댓글</span>
             </button>
           </nav>
 
@@ -554,6 +565,11 @@ export default function App() {
             </div>
           </div>
         )}
+
+        {/* Disqus Comments Section */}
+        <section className="mt-4">
+          <DisqusComments />
+        </section>
       </main>
 
       {/* Simulation Modal */}
