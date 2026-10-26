@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+@keyframes floatUp {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -60px) scale(1.2);
+  }
+}

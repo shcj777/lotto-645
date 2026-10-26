@@ -1,0 +1,8 @@
+{
+  "name": "productbuilder-week1",
+  "description": "행운의 로또 6/45 번호 추첨기 - 실시간 볼 추첨 애니메이션, 5게임 자동 생성, 고정수/제외수 필터 및 통계 분석",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
