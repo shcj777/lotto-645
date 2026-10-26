@@ -39,25 +39,27 @@ export const FiveGameTicket: React.FC<FiveGameTicketProps> = ({
   };
 
   return (
-    <div className="w-full bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col">
+    <div className="w-full bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden flex flex-col transition-colors">
       {/* Ticket Slip Header */}
-      <div className="px-5 py-4 border-b border-slate-200 bg-slate-50 flex items-center justify-between">
+      <div className="px-5 py-4 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/60 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <div className="w-2.5 h-2.5 rounded-full bg-rose-500" />
-          <h2 className="text-sm font-bold text-slate-800">로또 6/45 자동 5게임 슬립</h2>
+          <h2 className="text-sm font-bold text-slate-800 dark:text-slate-100">
+            로또 6/45 자동 5게임 슬립
+          </h2>
         </div>
         <button
           onClick={copyAllGames}
-          className="text-xs font-semibold text-slate-700 hover:text-slate-950 bg-white border border-slate-200 hover:bg-slate-100 px-3 py-1.5 rounded-lg transition-colors flex items-center gap-1.5 cursor-pointer"
+          className="text-xs font-semibold text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700 px-3 py-1.5 rounded-lg transition-colors flex items-center gap-1.5 cursor-pointer"
         >
           {copiedAll ? (
             <>
-              <Check className="w-3.5 h-3.5 text-emerald-600" />
-              <span className="text-emerald-700">전체 복사됨!</span>
+              <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+              <span className="text-emerald-700 dark:text-emerald-400">전체 복사됨!</span>
             </>
           ) : (
             <>
-              <Copy className="w-3.5 h-3.5 text-slate-500" />
+              <Copy className="w-3.5 h-3.5 text-slate-500 dark:text-slate-400" />
               <span>5게임 전체 복사</span>
             </>
           )}
@@ -65,7 +67,7 @@ export const FiveGameTicket: React.FC<FiveGameTicketProps> = ({
       </div>
 
       {/* 5 Games Rows */}
-      <div className="divide-y divide-slate-100">
+      <div className="divide-y divide-slate-100 dark:divide-slate-800/70">
         {games.map((game) => {
           const stats = calculateLottoStats(game.numbers);
           const saved = isSaved ? isSaved(game.id) : false;
@@ -73,11 +75,11 @@ export const FiveGameTicket: React.FC<FiveGameTicketProps> = ({
           return (
             <div
               key={game.id}
-              className="p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:bg-slate-50/60 transition-colors"
+              className="p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:bg-slate-50/60 dark:hover:bg-slate-800/40 transition-colors"
             >
               {/* Game Label & Stats */}
               <div className="flex items-center gap-3">
-                <span className="w-14 text-xs font-black text-slate-800 tracking-tight shrink-0 font-mono">
+                <span className="w-14 text-xs font-black text-slate-800 dark:text-slate-200 tracking-tight shrink-0 font-mono">
                   {game.label}
                 </span>
 
@@ -90,8 +92,8 @@ export const FiveGameTicket: React.FC<FiveGameTicketProps> = ({
               </div>
 
               {/* Auxiliary Info & Actions */}
-              <div className="flex items-center justify-between sm:justify-end gap-3 text-xs text-slate-500 pt-2 sm:pt-0 border-t border-slate-100 sm:border-0">
-                <div className="flex items-center gap-2 font-mono text-[11px] text-slate-400">
+              <div className="flex items-center justify-between sm:justify-end gap-3 text-xs text-slate-500 dark:text-slate-400 pt-2 sm:pt-0 border-t border-slate-100 dark:border-slate-800 sm:border-0">
+                <div className="flex items-center gap-2 font-mono text-[11px] text-slate-400 dark:text-slate-500">
                   <span>합계 {stats.sum}</span>
                   <span>·</span>
                   <span>홀:짝 {stats.oddCount}:{stats.evenCount}</span>
@@ -101,7 +103,7 @@ export const FiveGameTicket: React.FC<FiveGameTicketProps> = ({
                   <button
                     onClick={() => onRerollGame(game.id)}
                     title="이 게임 다시 뽑기"
-                    className="p-1.5 text-slate-500 hover:text-slate-900 hover:bg-slate-200/70 rounded-md transition-colors cursor-pointer"
+                    className="p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-200/70 dark:hover:bg-slate-800 rounded-md transition-colors cursor-pointer"
                   >
                     <RefreshCw className="w-3.5 h-3.5" />
                   </button>
@@ -109,10 +111,10 @@ export const FiveGameTicket: React.FC<FiveGameTicketProps> = ({
                   <button
                     onClick={() => copyGameNumbers(game)}
                     title="번호 복사"
-                    className="p-1.5 text-slate-500 hover:text-slate-900 hover:bg-slate-200/70 rounded-md transition-colors cursor-pointer"
+                    className="p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-200/70 dark:hover:bg-slate-800 rounded-md transition-colors cursor-pointer"
                   >
                     {copiedId === game.id ? (
-                      <Check className="w-3.5 h-3.5 text-emerald-600" />
+                      <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
                     ) : (
                       <Copy className="w-3.5 h-3.5" />
                     )}
@@ -122,7 +124,7 @@ export const FiveGameTicket: React.FC<FiveGameTicketProps> = ({
                     <button
                       onClick={() => onSaveGame(game)}
                       title="보관함에 저장"
-                      className="p-1.5 text-slate-500 hover:text-slate-900 hover:bg-slate-200/70 rounded-md transition-colors cursor-pointer"
+                      className="p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-200/70 dark:hover:bg-slate-800 rounded-md transition-colors cursor-pointer"
                     >
                       {saved ? (
                         <BookmarkCheck className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
